@@ -5,6 +5,15 @@
   <div class="max-w-[600px]">
     <h1 class="hero-fadein">Create Motion with Astro</h1>
     <p class="hero-fadein">Lightweight, smooth, and easy to implement animations.</p>
-    <button class="mt-[1.5rem] bg-white text-[#3e497a] border-none py-[0.8rem] px-[1.5rem] rounded-[4px] cursor-pointer font-semibold">押す</button>
+    <button class="hero-fadein mt-[1.5rem] bg-white text-[#3e497a] border-none py-[0.8rem] px-[1.5rem] rounded-[4px] cursor-pointer font-semibold">押す</button>
   </div>
 </section>
+
+<script>
+  import { gsap } from "gsap";
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const elements = document.querySelectorAll(".hero-fadein");
+    gsap.fromTo(elements, {opacity: 0, y: 30, scale: 0.98}, {opacity: 1, y: 0, scale: 1, duration: 0.8, delay: 0.2, stagger: 0.2, ease: "ease-out"})
+  });
+</script>
