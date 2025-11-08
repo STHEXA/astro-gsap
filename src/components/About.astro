@@ -29,13 +29,16 @@ const boxList = [
   </p>
   <p class="left text-[30px] font-bold">左から失礼〜</p>
   <p class="right text-[30px] font-bold">右から失礼〜</p>
-  <div class="mt-5">
+  <div class="mt-5 flex flex-col items-center">
     <ul class="flex gap-5" id="box-wrap">
       {
         boxList.map((box) => (
-          <li class="bg-amber-50 rounded-2xl overflow-hidden shadow-2xl w-[400px]" id="box">
+          <li
+            class="bg-amber-50 rounded-2xl overflow-hidden shadow-2xl w-[400px]"
+            id="box"
+          >
             <div class="w-full h-[300px]">
-              <img src={box.img} alt="" class="w-full h-full object-cover"/>
+              <img src={box.img} alt="" class="w-full h-full object-cover" />
             </div>
             <div class="p-3">
               <p>{box.title}</p>
@@ -45,13 +48,32 @@ const boxList = [
         ))
       }
     </ul>
+    <canvas
+      id="dotlottie-canvas"
+      style="width: 300px; height:300px;"
+      class="mt-[60px]"></canvas>
   </div>
 </section>
 
 <script>
   import { gsap } from "gsap";
   import ScrollTrigger from "gsap/ScrollTrigger";
+  import { DotLottie } from "@lottiefiles/dotlottie-web";
+
+  let dotLottie: any = null;
+
   window.addEventListener("DOMContentLoaded", () => {
+    const canvas = document.querySelector(
+      "#dotlottie-canvas"
+    ) as HTMLCanvasElement | null;
+    if (canvas) {
+      dotLottie = new DotLottie({
+        autoplay: false,
+        loop: false,
+        canvas: canvas,
+        src: "https://lottie.host/a0a7a9ed-1434-443e-8341-6bfc141632cd/UcHXFfGBtY.lottie", // or .json file
+      });
+    }
     gsap.registerPlugin(ScrollTrigger);
     const section = document.querySelector("#about-section");
     gsap.fromTo(
@@ -108,8 +130,23 @@ const boxList = [
     );
     gsap.fromTo(
       "#box",
-      {opacity: 0, y: 100},
-      {scrollTrigger: { trigger: "#box-wrap", start: "top 80%" }, opacity: 1, y: 0, delay: 0.5, stagger: 0.1, }
-    )
+      { opacity: 0, y: 100 },
+      {
+        scrollTrigger: { trigger: "#box-wrap", start: "top 80%" },
+        opacity: 1,
+        y: 0,
+        delay: 0.5,
+        stagger: 0.1,
+      }
+    );
+
+    ScrollTrigger.create({
+      trigger: "#dotlottie-canvas",
+      start: "top center",
+      once: true,
+      onEnter: () => {
+        dotLottie.play();
+      },
+    });
   });
 </script>

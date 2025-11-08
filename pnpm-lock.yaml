@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@lottiefiles/dotlottie-web':
+        specifier: ^0.56.0
+        version: 0.56.0
       '@tailwindcss/vite':
         specifier: ^4.1.16
         version: 4.1.16(vite@6.4.1(@types/node@24.9.2)(jiti@2.6.1)(lightningcss@1.30.2))
@@ -361,6 +364,9 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
+
+  '@lottiefiles/dotlottie-web@0.56.0':
+    resolution: {integrity: sha512-bWHRIGzjZs3Hjkz0JRsCMX2ya9a1tGU4atdrlfM3UoN0iamsDE64kSCMfGuchCwGAxg0xEh84CkF+SVV1NU9ow==}
 
   '@oslojs/encoding@1.1.0':
     resolution: {integrity: sha512-70wQhgYmndg4GCPxPPxPGevRKqTIJ2Nh4OkiMWmDAVYsTQ+Ta7Sq+rPevXyXGdzr30/qZBnyOalCszoMxlyldQ==}
@@ -1897,6 +1903,8 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
+
+  '@lottiefiles/dotlottie-web@0.56.0': {}
 
   '@oslojs/encoding@1.1.0': {}
 
