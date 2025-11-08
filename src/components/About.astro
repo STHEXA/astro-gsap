@@ -1,40 +1,115 @@
 ---
 const { title = "About" } = Astro.props;
+const boxList = [
+  {
+    img: "https://picsum.photos/300/200",
+    title: "box1",
+    text: "カード要素1の内容をここに書いておく",
+  },
+  {
+    img: "https://picsum.photos/400/200",
+    title: "box2",
+    text: "カード要素2の内容をここに書いておく",
+  },
+  {
+    img: "https://picsum.photos/500/300",
+    title: "box3",
+    text: "カード要素3の内容をここに書いておく",
+  },
+];
 ---
 
-<section class="py-[400px] bg-[#609d9f] flex flex-col gap-[170px] justify-center items-center" id="about-section">
+<section
+  class="py-[400px] bg-[#609d9f] flex flex-col gap-[170px] justify-center items-center"
+  id="about-section"
+>
   <h2 class="text-[50px] font-bold">{title}</h2>
-  <p class="text text-[30px] font-bold">画面内に要素が入ったときにアニメーションが発火するよ〜</p>
+  <p class="text text-[30px] font-bold">
+    画面内に要素が入ったときにアニメーションが発火するよ〜
+  </p>
   <p class="left text-[30px] font-bold">左から失礼〜</p>
   <p class="right text-[30px] font-bold">右から失礼〜</p>
+  <div class="mt-5">
+    <ul class="flex gap-5" id="box-wrap">
+      {
+        boxList.map((box) => (
+          <li class="bg-amber-50 rounded-2xl overflow-hidden shadow-2xl w-[400px]" id="box">
+            <div class="w-full h-[300px]">
+              <img src={box.img} alt="" class="w-full h-full object-cover"/>
+            </div>
+            <div class="p-3">
+              <p>{box.title}</p>
+              <p>{box.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </section>
 
 <script>
   import { gsap } from "gsap";
-  import ScrollTrigger from "gsap/ScrollTrigger"
+  import ScrollTrigger from "gsap/ScrollTrigger";
   window.addEventListener("DOMContentLoaded", () => {
-    gsap.registerPlugin(ScrollTrigger) 
+    gsap.registerPlugin(ScrollTrigger);
     const section = document.querySelector("#about-section");
-    gsap.fromTo(section, { opacity: 0 }, { scrollTrigger: {trigger: section, start: "top 70%"}, opacity: 1, duration: 0.9 })
+    gsap.fromTo(
+      section,
+      { opacity: 0 },
+      {
+        scrollTrigger: { trigger: section, start: "top 70%" },
+        opacity: 1,
+        duration: 0.9,
+      }
+    );
     gsap.fromTo(
       "h2",
-      {opacity: 0, y: 100},
-      {scrollTrigger: {trigger: "h2", start: "top 80%"}, opacity: 1, y: 0, duration: 0.9, ease: "cubic-bezier(0.17, 0.55, 0.55, 1)",}
+      { opacity: 0, y: 100 },
+      {
+        scrollTrigger: { trigger: "h2", start: "top 80%" },
+        opacity: 1,
+        y: 0,
+        duration: 0.9,
+        ease: "cubic-bezier(0.17, 0.55, 0.55, 1)",
+      }
     );
     gsap.fromTo(
       ".text",
-      {color: "#000"},
-      {scrollTrigger: {trigger: ".text", start: "top 80%"}, color: "#fff", duration: 0.9, ease: "cubic-bezier(0.17, 0.55, 0.55, 1)",}
+      { color: "#000" },
+      {
+        scrollTrigger: { trigger: ".text", start: "top 80%" },
+        color: "#fff",
+        duration: 0.9,
+        ease: "cubic-bezier(0.17, 0.55, 0.55, 1)",
+      }
     );
     gsap.fromTo(
       ".left",
-      {opacity: 0, x: -100},
-      {scrollTrigger: {trigger: ".left", start: "top 80%"}, opacity: 1, x: 0, duration: 0.9, ease: "cubic-bezier(0.17, 0.55, 0.55, 1)",}
+      { opacity: 0, x: -100 },
+      {
+        scrollTrigger: { trigger: ".left", start: "top 80%" },
+        opacity: 1,
+        x: 0,
+        duration: 0.9,
+        ease: "cubic-bezier(0.17, 0.55, 0.55, 1)",
+      }
     );
     gsap.fromTo(
       ".right",
-      {opacity: 0, x: 100},
-      {scrollTrigger: {trigger: ".right", start: "top 80%"}, opacity: 1, x: 0, duration: 0.9, ease: "cubic-bezier(0.17, 0.55, 0.55, 1)",}
+      { opacity: 0, x: 100 },
+      {
+        scrollTrigger: { trigger: ".right", start: "top 80%" },
+        opacity: 1,
+        x: 0,
+        duration: 0.9,
+        ease: "cubic-bezier(0.17, 0.55, 0.55, 1)",
+      }
     );
+    gsap.fromTo(
+      "#box",
+      {opacity: 0, y: 100},
+      {scrollTrigger: { trigger: "#box-wrap", start: "top 80%" }, opacity: 1, y: 0, delay: 0.5, stagger: 0.1, }
+    )
   });
 </script>
